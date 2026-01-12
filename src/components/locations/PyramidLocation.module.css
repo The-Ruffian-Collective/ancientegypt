@@ -1,0 +1,226 @@
+/* PyramidLocation - The Golden Pyramid exploration area */
+
+.location {
+  position: relative;
+  flex: 1;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+/* Background - Sky gradient */
+.background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #87CEEB 0%,
+    #B0E2FF 40%,
+    #FFE4B5 80%,
+    #F4A460 100%
+  );
+  z-index: 0;
+}
+
+/* Sun */
+.sun {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(
+    circle,
+    #FFD700 0%,
+    #FFA500 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+/* Clouds */
+.cloud {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0.8;
+  filter: blur(1px);
+}
+
+.cloud::before {
+  content: '☁️';
+}
+
+.cloud1 {
+  top: 8%;
+  left: 10%;
+}
+
+.cloud2 {
+  top: 15%;
+  right: 20%;
+  font-size: 2rem;
+}
+
+/* Pyramid Area */
+.pyramidArea {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70%;
+  z-index: 1;
+}
+
+/* The Pyramid */
+.pyramid {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.pyramidShape {
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-bottom: 200px solid #DAA520;
+  position: relative;
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.pyramidShape::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150px;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 0 solid transparent;
+  border-bottom: 200px solid #CD853F;
+}
+
+/* Pyramid entrance */
+.entrance {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 50px;
+  background: linear-gradient(180deg, #2C1810 0%, #1a0f0a 100%);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+/* Sand */
+.sand {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 25%;
+  background: linear-gradient(
+    180deg,
+    #F4A460 0%,
+    #DEB887 50%,
+    #D2B48C 100%
+  );
+  border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+}
+
+/* Game Button */
+.gameButton {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background: linear-gradient(
+    180deg,
+    var(--terracotta) 0%,
+    var(--terracotta-dark) 100%
+  );
+  color: white;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  border: 3px solid var(--terracotta-light);
+  cursor: pointer;
+}
+
+.gameButton:hover {
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.gameIcon {
+  font-size: 1.5rem;
+}
+
+.gameText {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .pyramidShape {
+    border-left-width: 100px;
+    border-right-width: 100px;
+    border-bottom-width: 140px;
+  }
+
+  .pyramidShape::before {
+    left: -100px;
+    border-left-width: 100px;
+    border-bottom-width: 140px;
+  }
+
+  .sun {
+    width: 60px;
+    height: 60px;
+  }
+
+  .gameButton {
+    padding: var(--space-sm) var(--space-lg);
+    font-size: 1rem;
+  }
+
+  .gameIcon {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pyramidShape {
+    border-left-width: 200px;
+    border-right-width: 200px;
+    border-bottom-width: 280px;
+  }
+
+  .pyramidShape::before {
+    left: -200px;
+    border-left-width: 200px;
+    border-bottom-width: 280px;
+  }
+
+  .entrance {
+    width: 50px;
+    height: 65px;
+  }
+
+  .sun {
+    width: 100px;
+    height: 100px;
+  }
+}

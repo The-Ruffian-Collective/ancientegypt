@@ -1,0 +1,205 @@
+/* Egyptian Adventure - Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap');
+
+:root {
+  /* Primary Colors - Warm Egyptian Palette */
+  --gold: #F4A460;
+  --gold-light: #FFD89B;
+  --gold-dark: #CD853F;
+
+  --sand: #F5DEB3;
+  --sand-light: #FFF8DC;
+  --sand-dark: #DEB887;
+
+  --nile-blue: #87CEEB;
+  --nile-teal: #20B2AA;
+  --nile-dark: #4682B4;
+
+  --terracotta: #E07850;
+  --terracotta-light: #F4A884;
+  --terracotta-dark: #CD5C5C;
+
+  --papyrus: #FFF8DC;
+  --papyrus-dark: #F5DEB3;
+
+  /* UI Colors */
+  --text-primary: #5D4037;
+  --text-light: #8D6E63;
+  --white: #FFFFFF;
+  --shadow: rgba(0, 0, 0, 0.15);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* Fonts */
+  --font-main: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Fredoka', 'Nunito', sans-serif;
+
+  /* Animation */
+  --transition-fast: 150ms ease;
+  --transition-medium: 300ms ease;
+  --transition-slow: 500ms ease;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-main);
+  background: linear-gradient(180deg, var(--nile-blue) 0%, var(--sand-light) 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: var(--terracotta-dark);
+  text-shadow: 2px 2px 0 var(--gold-light);
+}
+
+h2 {
+  font-size: 1.75rem;
+  color: var(--text-primary);
+}
+
+p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* Touch-friendly button base */
+button {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  background: none;
+  min-width: 48px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Primary Button Style */
+.btn-primary {
+  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-dark) 100%);
+  color: var(--white);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.125rem;
+  box-shadow: 0 4px 12px var(--shadow), 0 2px 4px var(--shadow);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--shadow), 0 3px 6px var(--shadow);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Card Style */
+.card {
+  background: var(--papyrus);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: 0 8px 24px var(--shadow);
+  border: 3px solid var(--gold-light);
+}
+
+/* Full screen container */
+.screen {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Utility classes */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Fun text styles */
+.fun-text {
+  font-family: var(--font-display);
+  color: var(--terracotta);
+}
+
+.sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,230 @@
+/* CollectionBook - Modal showing all collectibles */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: var(--space-md);
+  backdrop-filter: blur(4px);
+}
+
+.book {
+  background: linear-gradient(
+    180deg,
+    var(--papyrus) 0%,
+    var(--sand-light) 100%
+  );
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  max-width: 500px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 4px var(--gold-light);
+  border: 3px solid var(--gold);
+}
+
+/* Scrollbar styling */
+.book::-webkit-scrollbar {
+  width: 8px;
+}
+
+.book::-webkit-scrollbar-track {
+  background: var(--sand-light);
+  border-radius: 4px;
+}
+
+.book::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 4px;
+}
+
+/* Close Button */
+.closeButton {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  width: 36px;
+  height: 36px;
+  background: var(--terracotta);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  border: 2px solid var(--terracotta-light);
+}
+
+.closeButton:hover {
+  transform: scale(1.1);
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  padding-right: var(--space-xl);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--terracotta-dark);
+  margin-bottom: var(--space-md);
+  text-shadow: 2px 2px 0 var(--gold-light);
+}
+
+.progressBar {
+  height: 16px;
+  background: var(--sand-dark);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-sm);
+  border: 2px solid var(--gold);
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--gold) 0%,
+    var(--gold-light) 50%,
+    var(--gold) 100%
+  );
+  border-radius: var(--radius-full);
+}
+
+.progressText {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+/* Sections */
+.section {
+  margin-bottom: var(--space-lg);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--terracotta);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: var(--space-md);
+}
+
+/* Items */
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  transition: transform 0.15s ease;
+}
+
+.found {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 215, 0, 0.2) 0%,
+    rgba(255, 215, 0, 0.1) 100%
+  );
+  border: 2px solid var(--gold);
+}
+
+.notFound {
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px dashed var(--sand-dark);
+  opacity: 0.6;
+}
+
+.itemIcon {
+  font-size: 2rem;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.notFound .itemIcon {
+  filter: grayscale(1) opacity(0.5);
+}
+
+.itemName {
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Stickers (smaller, no name) */
+.sticker {
+  width: 60px;
+  height: 60px;
+  justify-content: center;
+}
+
+.stickerIcon {
+  font-size: 2rem;
+}
+
+.notFound .stickerIcon {
+  font-size: 1.5rem;
+  color: var(--text-light);
+}
+
+/* Completion Message */
+.completion {
+  text-align: center;
+  padding: var(--space-lg);
+  background: linear-gradient(
+    135deg,
+    var(--gold-light) 0%,
+    var(--gold) 100%
+  );
+  border-radius: var(--radius-lg);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--terracotta-dark);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .book {
+    padding: var(--space-md);
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: var(--space-sm);
+  }
+
+  .itemIcon {
+    font-size: 1.75rem;
+  }
+}

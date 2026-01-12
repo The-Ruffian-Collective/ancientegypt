@@ -1,0 +1,100 @@
+/* LocationWrapper - Container for each exploration area */
+
+.locationWrapper {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 248, 220, 0.95) 0%,
+    rgba(255, 248, 220, 0.8) 100%
+  );
+  border-bottom: 3px solid var(--gold-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+/* Back Button */
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  color: white;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  min-width: 80px;
+}
+
+.backButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.backButton:active {
+  transform: translateY(0);
+}
+
+.backArrow {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.backText {
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .backText {
+    display: inline;
+  }
+}
+
+/* Title */
+.title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--terracotta-dark);
+  text-align: center;
+  flex: 1;
+  margin: 0 var(--space-md);
+  text-shadow: 1px 1px 0 var(--gold-light);
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 1.75rem;
+  }
+}
+
+/* Spacer to balance the back button */
+.spacer {
+  width: 80px;
+}
+
+/* Main Content */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}

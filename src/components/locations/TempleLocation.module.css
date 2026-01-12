@@ -1,0 +1,198 @@
+/* TempleLocation - Hieroglyphics Temple exploration area */
+
+.location {
+  position: relative;
+  flex: 1;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+/* Background - Temple interior */
+.background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #8B7355 0%,
+    #A0826D 50%,
+    #D2B48C 100%
+  );
+  z-index: 0;
+}
+
+/* Temple wall */
+.wall {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 65%;
+  background: linear-gradient(
+    180deg,
+    #DEB887 0%,
+    #D2B48C 50%,
+    #C4A875 100%
+  );
+  border-radius: 0 0 8px 8px;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.wall::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(180deg, #DAA520 0%, #CD853F 100%);
+}
+
+/* Decorative hieroglyphics on wall */
+.wallSymbols {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 20px;
+  font-size: 2rem;
+  color: #8B4513;
+  opacity: 0.3;
+}
+
+/* Floor */
+.floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  background: linear-gradient(
+    180deg,
+    #CD853F 0%,
+    #8B4513 100%
+  );
+  z-index: 1;
+}
+
+.floor::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #DAA520 0%, #FFD700 50%, #DAA520 100%);
+}
+
+/* Name Feature - Main attraction */
+.nameFeature {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg) var(--space-xl);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 248, 220, 0.98) 0%,
+    rgba(245, 222, 179, 0.98) 100%
+  );
+  border: 4px solid var(--gold);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.nameGlow {
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+}
+
+.nameTitle {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--terracotta-dark);
+}
+
+.namePreview {
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(218, 165, 32, 0.2);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--gold-light);
+}
+
+.hieroglyphPreview {
+  font-size: 2rem;
+  letter-spacing: 4px;
+}
+
+.nameCta {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+/* Game Button */
+.gameButton {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background: linear-gradient(180deg, #8B4513 0%, #654321 100%);
+  color: white;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  border: 3px solid var(--gold);
+  cursor: pointer;
+}
+
+.gameIcon {
+  font-size: 1.5rem;
+}
+
+.gameText {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .nameFeature {
+    padding: var(--space-md) var(--space-lg);
+    top: 12%;
+  }
+
+  .nameTitle {
+    font-size: 1rem;
+  }
+
+  .hieroglyphPreview {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+
+  .wallSymbols {
+    font-size: 1.5rem;
+  }
+
+  .gameButton {
+    padding: var(--space-sm) var(--space-lg);
+    font-size: 1rem;
+  }
+}

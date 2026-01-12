@@ -1,0 +1,218 @@
+/* PalaceLocation - Pharaoh's Palace exploration area */
+
+.location {
+  position: relative;
+  flex: 1;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+/* Background - Palace interior */
+.background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #DEB887 0%,
+    #F5DEB3 30%,
+    #FFE4B5 100%
+  );
+  z-index: 0;
+}
+
+/* Decorative columns */
+.column {
+  position: absolute;
+  bottom: 0;
+  width: 60px;
+  height: 80%;
+  background: linear-gradient(
+    90deg,
+    #4682B4 0%,
+    #5F9EA0 50%,
+    #4682B4 100%
+  );
+  border-radius: 8px 8px 0 0;
+  z-index: 1;
+}
+
+.column::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10px;
+  right: -10px;
+  height: 30px;
+  background: linear-gradient(180deg, #DAA520 0%, #CD853F 100%);
+  border-radius: 8px 8px 0 0;
+}
+
+.column::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -5px;
+  right: -5px;
+  height: 20px;
+  background: #CD853F;
+}
+
+.column1 {
+  left: 10%;
+}
+
+.column2 {
+  left: 48%;
+  transform: translateX(-50%);
+}
+
+.column3 {
+  right: 10%;
+}
+
+/* Floor */
+.floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(
+    180deg,
+    #CD853F 0%,
+    #8B4513 100%
+  );
+  z-index: 2;
+}
+
+.floor::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #DAA520 0%, #FFD700 50%, #DAA520 100%);
+}
+
+/* Throne */
+.throne {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.throneEmoji {
+  font-size: 4rem;
+  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Gods row */
+.godsRow {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}
+
+.godButton {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm);
+  background: linear-gradient(145deg, rgba(255, 248, 220, 0.95) 0%, rgba(245, 222, 179, 0.95) 100%);
+  border: 3px solid var(--gold);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.godEmoji {
+  font-size: 2.5rem;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.godName {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--terracotta-dark);
+}
+
+.godCheck {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  background: var(--nile-teal);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.625rem;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+/* Game Button */
+.gameButton {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background: linear-gradient(180deg, #4682B4 0%, #2F5F8F 100%);
+  color: white;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  border: 3px solid #5F9EA0;
+  cursor: pointer;
+}
+
+.gameIcon {
+  font-size: 1.5rem;
+}
+
+.gameText {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .column {
+    width: 40px;
+  }
+
+  .godButton {
+    padding: var(--space-xs);
+  }
+
+  .godEmoji {
+    font-size: 2rem;
+  }
+
+  .godName {
+    font-size: 0.75rem;
+  }
+
+  .throneEmoji {
+    font-size: 3rem;
+  }
+
+  .gameButton {
+    padding: var(--space-sm) var(--space-lg);
+    font-size: 1rem;
+  }
+}

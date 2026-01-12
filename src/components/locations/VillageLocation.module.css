@@ -1,0 +1,169 @@
+/* VillageLocation - Nile River Village exploration area */
+
+.location {
+  position: relative;
+  flex: 1;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+/* Sky */
+.sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    180deg,
+    #87CEEB 0%,
+    #B0E2FF 100%
+  );
+  z-index: 0;
+}
+
+.sun {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(
+    circle,
+    #FFD700 0%,
+    #FFA500 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+/* Nile River */
+.river {
+  position: absolute;
+  top: 35%;
+  left: 0;
+  right: 0;
+  height: 35%;
+  background: linear-gradient(
+    180deg,
+    #4682B4 0%,
+    #20B2AA 50%,
+    #5F9EA0 100%
+  );
+  z-index: 1;
+  overflow: hidden;
+}
+
+.riverWaves {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    rgba(255, 255, 255, 0.15) 20px,
+    transparent 40px
+  );
+}
+
+.boat {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  font-size: 3rem;
+  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Land */
+.land {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  background: linear-gradient(
+    180deg,
+    #8B7355 0%,
+    #9ACD32 20%,
+    #6B8E23 100%
+  );
+  z-index: 2;
+}
+
+.land::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 15%;
+  background: linear-gradient(
+    180deg,
+    #DEB887 0%,
+    #8B7355 100%
+  );
+}
+
+/* Houses */
+.houses {
+  position: absolute;
+  top: 25%;
+  left: 5%;
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.house {
+  font-size: 2.5rem;
+  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Game Button */
+.gameButton {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background: linear-gradient(180deg, #20B2AA 0%, #008B8B 100%);
+  color: white;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  border: 3px solid #40E0D0;
+  cursor: pointer;
+}
+
+.gameIcon {
+  font-size: 1.5rem;
+}
+
+.gameText {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .boat {
+    font-size: 2rem;
+  }
+
+  .house {
+    font-size: 2rem;
+  }
+
+  .gameButton {
+    padding: var(--space-sm) var(--space-lg);
+    font-size: 1rem;
+  }
+
+  .gameIcon {
+    font-size: 1.25rem;
+  }
+}

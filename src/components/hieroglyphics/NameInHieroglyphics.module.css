@@ -1,0 +1,282 @@
+/* NameInHieroglyphics - The special name display feature */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: var(--space-md);
+  backdrop-filter: blur(4px);
+}
+
+.container {
+  background: linear-gradient(
+    180deg,
+    var(--papyrus) 0%,
+    var(--sand-light) 100%
+  );
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  max-width: 450px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 4px var(--gold-light);
+  border: 4px solid var(--gold);
+}
+
+/* Close button */
+.closeButton {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  width: 36px;
+  height: 36px;
+  background: var(--terracotta);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid var(--terracotta-light);
+  transition: transform 0.15s ease;
+}
+
+.closeButton:hover {
+  transform: scale(1.1);
+}
+
+/* Title */
+.title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--terracotta-dark);
+  text-align: center;
+  text-shadow: 2px 2px 0 var(--gold-light);
+  margin-bottom: var(--space-xs);
+}
+
+.subtitle {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: var(--space-lg);
+}
+
+/* Hieroglyphics Display */
+.hieroglyphicsDisplay {
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3);
+}
+
+.symbolsRow {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-md);
+}
+
+.symbolCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  background: rgba(255, 255, 255, 0.8);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--gold-dark);
+  min-width: 50px;
+}
+
+.symbol {
+  font-size: 2rem;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.letter {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--terracotta-dark);
+}
+
+/* Actual hieroglyphic symbols */
+.actualSymbols {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm);
+  background: rgba(139, 69, 19, 0.1);
+  border-radius: var(--radius-sm);
+}
+
+.hieroglyph {
+  font-size: 2rem;
+  color: #5D4037;
+}
+
+/* Explanations */
+.explanations {
+  margin-bottom: var(--space-lg);
+}
+
+.explanationTitle {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.explanationGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm);
+}
+
+.explanationItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: rgba(255, 248, 220, 0.8);
+  padding: var(--space-sm);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gold-light);
+}
+
+.expEmoji {
+  font-size: 1.5rem;
+}
+
+.expText {
+  font-size: 0.75rem;
+  color: var(--text-primary);
+}
+
+/* Try another name */
+.tryAnother {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.tryText {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  color: var(--text-light);
+  margin-bottom: var(--space-sm);
+}
+
+.inputRow {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.nameInput {
+  padding: var(--space-sm) var(--space-md);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  width: 150px;
+  text-align: center;
+  outline: none;
+}
+
+.nameInput:focus {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(224, 120, 80, 0.2);
+}
+
+.showButton {
+  padding: var(--space-sm) var(--space-lg);
+  background: linear-gradient(180deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.showButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.backToEilidh {
+  display: inline-block;
+  margin-top: var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
+  background: transparent;
+  color: var(--text-light);
+  border: 1px solid var(--sand-dark);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+/* Reward */
+.reward {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  background: linear-gradient(135deg, #9370DB 0%, #8A2BE2 100%);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-full);
+  color: white;
+}
+
+.rewardIcon {
+  font-size: 1.25rem;
+}
+
+.rewardText {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .container {
+    padding: var(--space-lg);
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .symbolCard {
+    padding: var(--space-xs) var(--space-sm);
+    min-width: 40px;
+  }
+
+  .symbol {
+    font-size: 1.5rem;
+  }
+
+  .hieroglyph {
+    font-size: 1.5rem;
+  }
+
+  .explanationGrid {
+    grid-template-columns: 1fr;
+  }
+}
