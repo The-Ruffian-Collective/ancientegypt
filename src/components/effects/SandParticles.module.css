@@ -1,0 +1,123 @@
+/* Sand Particles - Floating ambient effect */
+
+.particleContainer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.particle {
+  position: absolute;
+  width: var(--size, 4px);
+  height: var(--size, 4px);
+  top: var(--top, 50%);
+  right: -10px;
+  background: radial-gradient(
+    circle,
+    rgba(244, 164, 96, 0.6) 0%,
+    rgba(222, 184, 135, 0.3) 60%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: floatAcross var(--duration, 20s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  filter: blur(0.5px);
+}
+
+@keyframes floatAcross {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(-50vw) translateY(-20px);
+    opacity: 0.35;
+  }
+  95% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(-110vw) translateY(-10px);
+    opacity: 0;
+  }
+}
+
+/* Add subtle vertical drift variation for some particles */
+.particle:nth-child(odd) {
+  animation-name: floatAcrossUp;
+}
+
+.particle:nth-child(even) {
+  animation-name: floatAcrossDown;
+}
+
+@keyframes floatAcrossUp {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.4;
+  }
+  25% {
+    transform: translateX(-25vw) translateY(-15px);
+  }
+  50% {
+    transform: translateX(-50vw) translateY(-30px);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateX(-75vw) translateY(-20px);
+  }
+  95% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateX(-110vw) translateY(-25px);
+    opacity: 0;
+  }
+}
+
+@keyframes floatAcrossDown {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.35;
+  }
+  25% {
+    transform: translateX(-25vw) translateY(10px);
+  }
+  50% {
+    transform: translateX(-50vw) translateY(20px);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateX(-75vw) translateY(15px);
+  }
+  95% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(-110vw) translateY(10px);
+    opacity: 0;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .particle {
+    animation: none;
+    opacity: 0.25;
+    /* Place particles statically when motion is reduced */
+    right: auto;
+    left: calc(var(--delay, 0) * 10%);
+  }
+}
