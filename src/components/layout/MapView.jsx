@@ -322,95 +322,111 @@ function MapView() {
         />
       </svg>
 
-      {/* Location Hotspots */}
+      {/* Location Cards */}
       <div className={styles.locationsLayer}>
-        {locations.map((location, index) => (
-          <motion.button
-            key={location.id}
-            className={styles.locationButton}
-            style={{
-              left: `${location.position.x}%`,
-              top: `${location.position.y}%`,
-            }}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              type: 'spring',
-              stiffness: 200,
-              damping: 15,
-              delay: 0.2 + index * 0.1,
-            }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => handleLocationClick(location)}
-          >
-            <motion.div
-              className={styles.locationIcon}
-              animate={{
-                y: [0, -8, 0],
+        {locations.map((location, index) => {
+          const isVisited = hasVisited(location.id)
+
+          return (
+            <motion.button
+              key={location.id}
+              className={`${styles.locationCard} ${styles[`card_${location.id}`]}`}
+              style={{
+                left: `${location.position.x}%`,
+                top: `${location.position.y}%`,
               }}
+              initial={{ scale: 0, opacity: 0, rotateY: -90 }}
+              animate={{ scale: 1, opacity: 1, rotateY: 0 }}
               transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: index * 0.3,
+                type: 'spring',
+                stiffness: 200,
+                damping: 15,
+                delay: 0.3 + index * 0.15,
               }}
+              whileHover={{
+                y: -8,
+                scale: 1.05,
+                boxShadow: '0 12px 30px rgba(0, 0, 0, 0.35), 0 0 25px rgba(218, 165, 32, 0.3)'
+              }}
+              whileTap={{
+                scale: 0.98,
+                y: -2
+              }}
+              onClick={() => handleLocationClick(location)}
             >
-              {/* Decorative rays behind marker */}
-              <div className={styles.markerRays}>
-                {[...Array(8)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className={styles.ray}
-                    style={{
-                      transform: `rotate(${i * 45}deg)`,
-                    }}
+              {/* Card Background Pattern */}
+              <div className={styles.cardPattern} />
+
+              {/* Parchment Texture Overlay */}
+              <div className={styles.cardTexture} />
+
+              {/* Visit Status Badge */}
+              {isVisited ? (
+                <motion.div
+                  className={styles.goldStar}
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ type: 'spring', stiffness: 200, delay: 0.5 + index * 0.15 }}
+                >
+                  <motion.span
                     animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.3, 0.6, 0.3],
+                      rotate: [0, 5, -5, 0],
+                      scale: [1, 1.1, 1],
                     }}
                     transition={{
                       duration: 2,
                       repeat: Infinity,
                       ease: 'easeInOut',
-                      delay: i * 0.1,
                     }}
-                  />
-                ))}
-              </div>
-
-              {/* Circular stamp marker */}
-              <div className={styles.stampCircle}>
-                <div className={styles.stampInner}>
-                  <span className={styles.emoji}>{location.emoji}</span>
-                </div>
-              </div>
-
-              {hasVisited(location.id) && (
-                <span className={styles.visitedCheck}>✓</span>
+                  >
+                    ⭐
+                  </motion.span>
+                </motion.div>
+              ) : (
+                <div className={styles.unvisitedBadge}>?</div>
               )}
-            </motion.div>
 
-            <div className={styles.locationLabel}>
-              <span className={styles.locationName}>{location.name}</span>
-              <span className={styles.locationDesc}>{location.description}</span>
-            </div>
+              {/* Card Content */}
+              <div className={styles.cardContent}>
+                {/* Main Emoji Icon */}
+                <motion.div
+                  className={styles.cardEmoji}
+                  animate={isVisited ? {
+                    y: [0, -4, 0],
+                  } : {}}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                    delay: index * 0.3,
+                  }}
+                >
+                  {location.emoji}
+                </motion.div>
 
-            {/* Glowing pulse effect */}
-            <motion.div
-              className={styles.pulseRing}
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.5, 0, 0.5],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeOut',
-              }}
-            />
-          </motion.button>
-        ))}
+                {/* Location Info */}
+                <h3 className={styles.cardTitle}>{location.name}</h3>
+                <p className={styles.cardDescription}>{location.description}</p>
+              </div>
+
+              {/* Golden Shimmer for Visited Cards */}
+              {isVisited && (
+                <motion.div
+                  className={styles.shimmer}
+                  animate={{
+                    x: ['-100%', '100%'],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 3,
+                    ease: 'easeInOut',
+                  }}
+                />
+              )}
+            </motion.button>
+          )
+        })}
       </div>
 
       {/* Decorative Elements */}
