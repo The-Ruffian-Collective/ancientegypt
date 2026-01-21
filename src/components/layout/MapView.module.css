@@ -256,168 +256,202 @@
   }
 }
 
-/* Location Buttons with Stamp Design */
+/* Location Cards - Illustrated Destination Cards */
 .locationsLayer {
   position: absolute;
   inset: 0;
   z-index: 6;
 }
 
-.locationButton {
+.locationCard {
   position: absolute;
   transform: translate(-50%, -50%);
+  width: 140px;
+  height: 160px;
+  background: transparent;
+  border: 3px solid var(--gold);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-md);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 6;
-  min-width: 48px;
-  min-height: 48px;
-}
-
-.locationIcon {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  display: flex;
-  align-items: center;
   justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+  z-index: 6;
 }
 
-/* Decorative Rays Behind Marker */
-.markerRays {
+/* Card Background Pattern (location-specific) */
+.cardPattern {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
+  inset: 0;
+  z-index: 0;
   pointer-events: none;
 }
 
-.ray {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 4px;
-  height: 35px;
-  background: linear-gradient(
-    to top,
-    transparent 0%,
-    var(--gold-light) 50%,
-    transparent 100%
-  );
-  transform-origin: center bottom;
-  margin-left: -2px;
-  margin-top: -35px;
-  border-radius: 2px;
+/* Pyramid - Warm sand gradient with triangle pattern */
+.card_pyramid .cardPattern {
+  background:
+    linear-gradient(135deg, #F4A460 0%, #DEB887 50%, #D2B48C 100%),
+    repeating-linear-gradient(
+      60deg,
+      transparent,
+      transparent 20px,
+      rgba(139, 69, 19, 0.08) 20px,
+      rgba(139, 69, 19, 0.08) 40px
+    );
 }
 
-/* Circular Stamp Marker */
-.stampCircle {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(
-    145deg,
-    var(--papyrus) 0%,
-    var(--sand) 100%
-  );
+/* Palace - Royal purple-gold gradient */
+.card_palace .cardPattern {
+  background:
+    linear-gradient(135deg, #9B59B6 0%, #8E44AD 30%, #DAA520 70%, #FFD700 100%),
+    radial-gradient(circle at 20% 80%, rgba(218, 165, 32, 0.3) 0%, transparent 50%);
+}
+
+/* Temple - Papyrus beige with hieroglyph pattern */
+.card_temple .cardPattern {
+  background:
+    linear-gradient(135deg, #F5DEB3 0%, #DEB887 50%, #D2B48C 100%),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 15px,
+      rgba(139, 69, 19, 0.06) 15px,
+      rgba(139, 69, 19, 0.06) 18px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 15px,
+      rgba(139, 69, 19, 0.06) 15px,
+      rgba(139, 69, 19, 0.06) 18px
+    );
+}
+
+/* Village - Blue-green gradient (Nile colours) */
+.card_village .cardPattern {
+  background:
+    linear-gradient(135deg, #20B2AA 0%, #48D1CC 30%, #40E0D0 70%, #7FFFD4 100%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+}
+
+/* Parchment Texture Overlay */
+.cardTexture {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.1;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(139, 69, 19, 0.1) 2px,
+      rgba(139, 69, 19, 0.1) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(139, 69, 19, 0.1) 2px,
+      rgba(139, 69, 19, 0.1) 4px
+    );
+}
+
+/* Visit Status Badges */
+.goldStar {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 36px;
+  height: 36px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow:
-    0 6px 16px rgba(0, 0, 0, 0.25),
-    inset 0 2px 4px rgba(255, 255, 255, 0.6),
-    inset 0 -2px 4px rgba(139, 69, 19, 0.1);
-  border: 4px solid var(--gold);
-  z-index: 2;
+  font-size: 1.5rem;
+  z-index: 3;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-.stampInner {
-  width: 90%;
-  height: 90%;
-  border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 248, 220, 0.9) 0%,
-    rgba(244, 164, 96, 0.3) 100%
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed var(--gold-light);
-}
-
-.emoji {
-  font-size: 2.25rem;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-}
-
-.visitedCheck {
+.unvisitedBadge {
   position: absolute;
-  bottom: -4px;
-  right: -4px;
+  top: 8px;
+  right: 8px;
   width: 28px;
   height: 28px;
-  background: var(--nile-teal);
-  color: white;
+  background: radial-gradient(circle, rgba(139, 69, 19, 0.9) 0%, rgba(101, 67, 33, 0.95) 100%);
+  color: var(--gold-light);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.875rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
   font-weight: bold;
-  border: 3px solid white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--gold);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 215, 0, 0.4);
   z-index: 3;
 }
 
-.locationLabel {
+/* Card Content */
+.cardContent {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  background: rgba(255, 248, 220, 0.95);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-md);
-  box-shadow:
-    0 3px 10px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  border: 2px solid var(--gold-light);
-  max-width: 140px;
-  backdrop-filter: blur(4px);
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm);
+  text-align: center;
 }
 
-.locationName {
+.cardEmoji {
+  font-size: 3rem;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+  margin-bottom: var(--space-xs);
+}
+
+.cardTitle {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 0.875rem;
   color: var(--terracotta-dark);
-  text-align: center;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
   line-height: 1.2;
+  margin: 0;
+  max-width: 120px;
 }
 
-.locationDesc {
-  font-size: 0.75rem;
-  color: var(--text-light);
-  text-align: center;
+.cardDescription {
+  font-size: 0.7rem;
+  color: var(--text-primary);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  line-height: 1.3;
+  margin: 0;
+  max-width: 120px;
 }
 
-.pulseRing {
+/* Golden Shimmer Effect for Visited Cards */
+.shimmer {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
-  border: 3px solid var(--gold);
-  border-radius: 50%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 215, 0, 0.3) 50%,
+    transparent 100%
+  );
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -525,49 +559,38 @@
     font-size: 1.5rem;
   }
 
-  .locationIcon {
-    width: 60px;
-    height: 60px;
+  .locationCard {
+    width: 120px;
+    height: 140px;
+    border: 2px solid var(--gold);
   }
 
-  .stampCircle {
-    width: 60px;
-    height: 60px;
-    border: 3px solid var(--gold);
+  .cardEmoji {
+    font-size: 2.5rem;
   }
 
-  .markerRays {
-    width: 80px;
-    height: 80px;
+  .cardTitle {
+    font-size: 0.75rem;
+    max-width: 100px;
   }
 
-  .ray {
-    height: 28px;
-    margin-top: -28px;
+  .cardDescription {
+    font-size: 0.625rem;
+    max-width: 100px;
   }
 
-  .emoji {
-    font-size: 1.75rem;
+  .goldStar {
+    width: 30px;
+    height: 30px;
+    font-size: 1.25rem;
   }
 
-  .visitedCheck {
+  .unvisitedBadge {
     width: 24px;
     height: 24px;
-    font-size: 0.75rem;
-    border: 2px solid white;
-  }
-
-  .locationLabel {
-    padding: var(--space-xs) var(--space-sm);
-    max-width: 120px;
-  }
-
-  .locationName {
-    font-size: 0.75rem;
-  }
-
-  .locationDesc {
-    font-size: 0.625rem;
+    font-size: 0.875rem;
+    top: 6px;
+    right: 6px;
   }
 
   .sun {
@@ -587,11 +610,6 @@
     font-size: 2rem;
   }
 
-  .pulseRing {
-    width: 60px;
-    height: 60px;
-  }
-
   .horizonPyramids {
     top: 40%;
   }
@@ -608,36 +626,36 @@
     font-size: 3rem;
   }
 
-  .locationIcon {
-    width: 100px;
-    height: 100px;
+  .locationCard {
+    width: 160px;
+    height: 180px;
+    border: 4px solid var(--gold);
   }
 
-  .stampCircle {
-    width: 100px;
-    height: 100px;
-    border: 5px solid var(--gold);
+  .cardEmoji {
+    font-size: 3.5rem;
   }
 
-  .markerRays {
-    width: 130px;
-    height: 130px;
+  .cardTitle {
+    font-size: 1rem;
+    max-width: 140px;
   }
 
-  .ray {
-    height: 45px;
-    width: 5px;
-    margin-top: -45px;
+  .cardDescription {
+    font-size: 0.8rem;
+    max-width: 140px;
   }
 
-  .emoji {
-    font-size: 2.75rem;
+  .goldStar {
+    width: 40px;
+    height: 40px;
+    font-size: 1.75rem;
   }
 
-  .visitedCheck {
+  .unvisitedBadge {
     width: 32px;
     height: 32px;
-    font-size: 1rem;
+    font-size: 1.125rem;
   }
 
   .sun {
@@ -652,37 +670,25 @@
   .palm1 {
     transform: scale(1.2) scaleX(-1);
   }
-
-  .pulseRing {
-    width: 100px;
-    height: 100px;
-  }
-
-  .locationLabel {
-    max-width: 160px;
-  }
 }
 
 /* Hover effects for desktop */
 @media (hover: hover) {
-  .locationButton:hover .stampCircle {
-    box-shadow:
-      0 8px 20px rgba(0, 0, 0, 0.3),
-      inset 0 2px 4px rgba(255, 255, 255, 0.6),
-      inset 0 -2px 4px rgba(139, 69, 19, 0.1),
-      0 0 20px rgba(244, 164, 96, 0.4);
+  .locationCard:hover {
+    border-color: var(--gold-light);
   }
 
-  .locationButton:hover .markerRays .ray {
-    opacity: 0.8 !important;
+  .locationCard:hover .cardEmoji {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
   }
 }
 
 /* Touch-friendly adjustments */
 @media (hover: none) {
-  .locationButton {
+  .locationCard {
     /* Ensure minimum touch target size */
-    min-width: 60px;
-    min-height: 60px;
+    min-width: 120px;
+    min-height: 140px;
   }
 }
