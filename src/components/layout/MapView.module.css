@@ -1,4 +1,4 @@
-/* MapView - The Main Adventure Hub */
+/* MapView - Treasure Map Adventure Hub */
 
 .mapContainer {
   min-height: 100vh;
@@ -9,7 +9,54 @@
   flex-direction: column;
 }
 
-/* Sky Background */
+/* Papyrus Texture Overlay */
+.papyrusTexture {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.15;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(139, 69, 19, 0.03) 2px,
+      rgba(139, 69, 19, 0.03) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(139, 69, 19, 0.03) 2px,
+      rgba(139, 69, 19, 0.03) 4px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(222, 184, 135, 0.02) 10px,
+      rgba(222, 184, 135, 0.02) 20px
+    );
+  mix-blend-mode: multiply;
+}
+
+/* Vignette Effect */
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 40%,
+    rgba(101, 67, 33, 0.1) 70%,
+    rgba(101, 67, 33, 0.25) 100%
+  );
+}
+
+/* Sky Background with treasure map gradient */
 .sky {
   position: absolute;
   inset: 0;
@@ -21,6 +68,41 @@
     #F4A460 100%
   );
   z-index: 0;
+}
+
+/* Horizon Pyramids */
+.horizonPyramids {
+  position: absolute;
+  top: 35%;
+  left: 0;
+  right: 0;
+  height: 100px;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.pyramid1 {
+  position: absolute;
+  left: 10%;
+  filter: blur(1px);
+  opacity: 0.4;
+}
+
+.pyramid2 {
+  position: absolute;
+  left: 35%;
+  filter: blur(1px);
+  opacity: 0.5;
+}
+
+.pyramid3 {
+  position: absolute;
+  right: 15%;
+  filter: blur(1px);
+  opacity: 0.45;
 }
 
 /* Header & Title */
@@ -82,7 +164,7 @@
   filter: blur(2px);
 }
 
-/* Desert & Ground */
+/* Desert & Ground with SVG Dunes */
 .desert {
   position: absolute;
   bottom: 0;
@@ -92,36 +174,30 @@
   z-index: 2;
 }
 
-.dune1, .dune2, .dune3 {
+.duneSvg {
   position: absolute;
-  border-radius: 50% 50% 0 0;
-  background: linear-gradient(180deg, #F4A460 0%, #DEB887 100%);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
 }
 
 .dune1 {
-  bottom: 0;
-  left: -10%;
-  width: 60%;
   height: 70%;
-  opacity: 0.9;
+  z-index: 3;
+  opacity: 0.95;
 }
 
 .dune2 {
-  bottom: 0;
-  right: -5%;
-  width: 50%;
   height: 60%;
-  opacity: 0.85;
-  background: linear-gradient(180deg, #E8C39E 0%, #D2B48C 100%);
+  z-index: 4;
+  opacity: 0.9;
 }
 
 .dune3 {
-  bottom: 0;
-  left: 30%;
-  width: 70%;
   height: 50%;
-  opacity: 0.75;
-  background: linear-gradient(180deg, #DEB887 0%, #C8AD7F 100%);
+  z-index: 5;
+  opacity: 0.85;
 }
 
 /* Nile River */
@@ -141,6 +217,7 @@
   );
   border-radius: 100px;
   overflow: hidden;
+  z-index: 3;
 }
 
 .nileWave {
@@ -154,11 +231,36 @@
   );
 }
 
-/* Location Buttons */
+/* Treasure Map Path Connections */
+.pathConnections {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.treasurePath {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 0.3;
+  stroke-dasharray: 2 4;
+  stroke-linecap: round;
+  opacity: 0.6;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  animation: marchDashes 2s linear infinite;
+}
+
+@keyframes marchDashes {
+  to {
+    stroke-dashoffset: -6;
+  }
+}
+
+/* Location Buttons with Stamp Design */
 .locationsLayer {
   position: absolute;
   inset: 0;
-  z-index: 5;
+  z-index: 6;
 }
 
 .locationButton {
@@ -172,13 +274,54 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 5;
+  z-index: 6;
+  min-width: 48px;
+  min-height: 48px;
 }
 
 .locationIcon {
   position: relative;
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Decorative Rays Behind Marker */
+.markerRays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+}
+
+.ray {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 35px;
+  background: linear-gradient(
+    to top,
+    transparent 0%,
+    var(--gold-light) 50%,
+    transparent 100%
+  );
+  transform-origin: center bottom;
+  margin-left: -2px;
+  margin-top: -35px;
+  border-radius: 2px;
+}
+
+/* Circular Stamp Marker */
+.stampCircle {
+  position: relative;
+  width: 80px;
+  height: 80px;
   background: linear-gradient(
     145deg,
     var(--papyrus) 0%,
@@ -189,30 +332,50 @@
   align-items: center;
   justify-content: center;
   box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.2),
-    inset 0 2px 4px rgba(255, 255, 255, 0.5);
-  border: 3px solid var(--gold);
+    0 6px 16px rgba(0, 0, 0, 0.25),
+    inset 0 2px 4px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 4px rgba(139, 69, 19, 0.1);
+  border: 4px solid var(--gold);
+  z-index: 2;
+}
+
+.stampInner {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 248, 220, 0.9) 0%,
+    rgba(244, 164, 96, 0.3) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--gold-light);
 }
 
 .emoji {
-  font-size: 2rem;
+  font-size: 2.25rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .visitedCheck {
   position: absolute;
   bottom: -4px;
   right: -4px;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   background: var(--nile-teal);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: bold;
-  border: 2px solid white;
+  border: 3px solid white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 3;
 }
 
 .locationLabel {
@@ -223,9 +386,12 @@
   background: rgba(255, 248, 220, 0.95);
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   border: 2px solid var(--gold-light);
   max-width: 140px;
+  backdrop-filter: blur(4px);
 }
 
 .locationName {
@@ -248,8 +414,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   border: 3px solid var(--gold);
   border-radius: 50%;
   pointer-events: none;
@@ -263,10 +429,11 @@
   pointer-events: none;
 }
 
+/* SVG Palm Trees */
 .palm {
   position: absolute;
-  font-size: 3rem;
-  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(3px 5px 6px rgba(0, 0, 0, 0.25));
+  opacity: 0.9;
 }
 
 .palm1 {
@@ -295,6 +462,43 @@
   font-size: 1.5rem;
 }
 
+/* Floating Sand Particles */
+.sandParticle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(
+    circle,
+    rgba(244, 164, 96, 0.8) 0%,
+    rgba(222, 184, 135, 0.4) 50%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+.particle1 {
+  bottom: 35%;
+  left: 20%;
+  width: 4px;
+  height: 4px;
+}
+
+.particle2 {
+  bottom: 40%;
+  right: 25%;
+  width: 3px;
+  height: 3px;
+}
+
+.particle3 {
+  bottom: 38%;
+  left: 60%;
+  width: 5px;
+  height: 5px;
+}
+
 /* Hint Text */
 .hint {
   position: absolute;
@@ -305,14 +509,17 @@
   font-family: var(--font-display);
   font-size: 1.125rem;
   color: var(--text-primary);
-  background: rgba(255, 248, 220, 0.9);
+  background: rgba(255, 248, 220, 0.95);
   padding: var(--space-sm) var(--space-lg);
   border-radius: var(--radius-full);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   border: 2px solid var(--gold-light);
+  backdrop-filter: blur(4px);
 }
 
-/* Responsive */
+/* Responsive Adjustments */
 @media (max-width: 600px) {
   .title {
     font-size: 1.5rem;
@@ -323,8 +530,31 @@
     height: 60px;
   }
 
+  .stampCircle {
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--gold);
+  }
+
+  .markerRays {
+    width: 80px;
+    height: 80px;
+  }
+
+  .ray {
+    height: 28px;
+    margin-top: -28px;
+  }
+
   .emoji {
     font-size: 1.75rem;
+  }
+
+  .visitedCheck {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+    border: 2px solid white;
   }
 
   .locationLabel {
@@ -346,11 +576,30 @@
   }
 
   .palm {
-    font-size: 2rem;
+    transform: scale(0.7);
+  }
+
+  .palm1 {
+    transform: scale(0.7) scaleX(-1);
   }
 
   .camel {
     font-size: 2rem;
+  }
+
+  .pulseRing {
+    width: 60px;
+    height: 60px;
+  }
+
+  .horizonPyramids {
+    top: 40%;
+  }
+
+  .pyramid1,
+  .pyramid2,
+  .pyramid3 {
+    transform: scale(0.8);
   }
 }
 
@@ -360,16 +609,80 @@
   }
 
   .locationIcon {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .stampCircle {
+    width: 100px;
+    height: 100px;
+    border: 5px solid var(--gold);
+  }
+
+  .markerRays {
+    width: 130px;
+    height: 130px;
+  }
+
+  .ray {
+    height: 45px;
+    width: 5px;
+    margin-top: -45px;
   }
 
   .emoji {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
+  }
+
+  .visitedCheck {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
   }
 
   .sun {
     width: 120px;
     height: 120px;
+  }
+
+  .palm {
+    transform: scale(1.2);
+  }
+
+  .palm1 {
+    transform: scale(1.2) scaleX(-1);
+  }
+
+  .pulseRing {
+    width: 100px;
+    height: 100px;
+  }
+
+  .locationLabel {
+    max-width: 160px;
+  }
+}
+
+/* Hover effects for desktop */
+@media (hover: hover) {
+  .locationButton:hover .stampCircle {
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.3),
+      inset 0 2px 4px rgba(255, 255, 255, 0.6),
+      inset 0 -2px 4px rgba(139, 69, 19, 0.1),
+      0 0 20px rgba(244, 164, 96, 0.4);
+  }
+
+  .locationButton:hover .markerRays .ray {
+    opacity: 0.8 !important;
+  }
+}
+
+/* Touch-friendly adjustments */
+@media (hover: none) {
+  .locationButton {
+    /* Ensure minimum touch target size */
+    min-width: 60px;
+    min-height: 60px;
   }
 }
